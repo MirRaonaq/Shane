@@ -1,0 +1,158 @@
+	<!DOCTYPE html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Resume</title>
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/red.css')}}" />
+	<!--[if IE 7]>
+	<link href="css/ie7.css" rel="stylesheet" type="text/css" />
+	<![endif]-->
+	<!--[if IE 6]>
+	<link href="css/ie6.css" rel="stylesheet" type="text/css" />
+	<![endif]-->
+
+	</head>
+	<body>
+	<!-- Begin Wrapper -->
+	          <div class="self">
+	            <h1 class="name" style="{{ styles }}">{{ name }}<br />
+	              <span>{{ title }}</span></h1>
+				  <br>
+	            <ul>
+	              <li class="mail">{{ email }}</li>
+	              <li class="tel">{{ number }}</li>
+	              <li class="web">{{ web }}</li>
+	            </ul>
+	          </div>
+	          <!-- End Personal Information -->
+	          <!-- Begin Social -->
+	          <!-- End Social -->
+	        </div>
+	        <!-- Begin 1st Row -->
+	        <div class="entry">
+	          <h2>OBJECTIVE</h2>
+	          <p>{{ objective }}</p>
+	        </div>
+	        <!-- End 1st Row -->
+	        <!-- Begin 2nd Row -->
+	        <div class="entry">
+	          <h2>EDUCATION</h2>
+	          <div class="content">
+							{% if education|length > 1 %}
+								{% for edu in education %}
+			            <h3>{{ edu["start"] }} - {{ edu["end"] }}</h3>
+			            <p>{{ edu['school'] }} <br />
+			            <em>{{ edu["degree"] }}</em></p>
+								{% endfor %}
+							{% else %}
+								<h3>{{ education[0]["start"] }} - {{ education[0]["end"] }}</h3>
+								<p>{{ education[0]['school'] }}<br />
+								<em>{{ education[0]['degree'] }}</em></p>
+							{% endif %}
+	          </div>
+	        </div>
+	        <!-- End 2nd Row -->
+	        <!-- Begin 3rd Row -->
+	        <div class="entry">
+	          <h2>EXPERIENCE</h2>
+	          <div class="content">
+				  {% if experience|length > 1 %}
+				  		{% for exp in experience %}
+	            			<h3>{{ exp["start"] }} - {{ exp["end"] }}</h3>
+	            			<p>{{ exp["title"] }} <br>
+	              			<em>{{ exp["place"] }}</em></p>
+
+								{% if description|length > 1 %}
+				  					<ul class="info">
+										{% for d in des['description'] %}
+											<li>{{ d }}</li>
+										{% endfor %}
+									</ul>
+								{% else %}
+									<ul class="info">
+		              					<li>{{ des["description"][0] }}</li>
+		            				</ul>
+								{% endif %}
+				  		{% endfor %}
+				  {% else %}
+				  		<h3>{{ experience[0]["start"] }} - {{ experience[0]["end"] }}</h3>
+				  		<p>{{ experience[0]["title"] }} <br/>
+							<em>{{ experience[0]["place"] }}</em></p>
+				  {% endif %}
+				  </div>
+	          </div>
+	        <!-- End 3rd Row -->
+	        <!-- Begin 4th Row -->
+	<div class="entry">
+	          <h2>EXTRA-CURRICULAR</h2>
+	          <div class="content">
+				  {% if extra|length > 1 %}
+				  		{% for ext in extra %}
+	            			<h3>{{ ext["start"] }} - {{ ext["end"] }}</h3>
+	            			<em>{{ ext["title"] }} </em>
+										<br/>
+	              			<p>{{ ext["place"] }}</p>
+
+								{% if description|length > 1 %}
+				  					<ul class="info">
+										{% for m in dest['description'] %}
+											<li>{{ m }}</li>
+										{% endfor %}
+									</ul>
+								{% else %}
+									<ul class="info">
+		              					<li>{{ dest["description"][0] }}</li>
+		            				</ul>
+								{% endif %}
+				  		{% endfor %}
+				  {% else %}
+				  		<h3>{{ extra[0]["start"] }} - {{ extra[0]["end"] }}</h3>
+				  		<p>{{ extra[0]["title"] }} <br />
+							<em>{{ extra[0]["place"] }}</em></p>
+				  {% endif %}
+				  </div>
+	          </div>
+
+	        <div class="entry">
+          <h2>SKILLS</h2>
+				 <div class="content">
+            <h3>Languages</h3>
+			  {% if language|length > 1 %}
+			  	{% for lang in language %}
+
+            <ul class="skills">
+              <li>{{ lang['language'] }}</li>
+				</ul>
+				{% endfor %}
+				{% else %}
+
+				<ul class="skills">
+				<li>{{ language[0]['language'] }}</li>
+					</ul>
+				{% endif %}
+            </ul>
+          </div>
+          <div class="content">
+            <h3>Awards</h3>
+			  {% if award|length > 1 %}
+			  <ul class="skills">
+			  	{% for aw in award %}
+              		<li>{{ aw['awards'] }}</li>
+				{% endfor %}
+				  </ul>
+				{% else %}
+			  <ul class="skills">
+				<li>{{ award[0]['awards'] }} </li>
+			  </ul>
+				{% endif %}
+            </ul>
+			  </div>
+          </div>
+
+
+        </div>
+
+	            </ul>
+	          </div>
+	        </div>
+	</body>
+	</html>

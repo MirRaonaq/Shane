@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+
+	<title>{{ name }} - {{ title }}</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+
+	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/resume.css')}}" media="all" />
+
+</head>
+<body>
+
+<div id="doc2" class="yui-t7">
+	<div id="inner">
+
+		<div id="hd">
+			<div class="yui-gc">
+				<div class="yui-u first">
+					<h1>{{ name }}</h1>
+					<h2>{{ title }}</h2>
+				</div>
+
+				<div class="yui-u">
+					<div class="contact-info">
+						<h3> {{ email }} </h3>
+						<h3>{{ number }}</h3>
+					</div><!--// .contact-info -->
+				</div>
+			</div><!--// .yui-gc -->
+		</div><!--// hd -->
+
+		<div id="bd">
+			<div id="yui-main">
+				<div class="yui-b">
+
+					<div class="yui-gf">
+						<div class="yui-u first">
+							<h2>Profile</h2>
+						</div>
+						<div class="yui-u">
+							<p class="enlarge">
+								{{ objective }}
+							</p>
+						</div>
+					</div><!--// .yui-gf -->
+
+					<div class="yui-gf">
+						<div class="yui-u first">
+							<h2>Skills</h2>
+						</div>
+						<div class="yui-u">
+								<div class="talent">
+									{% if language|length > 1 %}
+								  	{% for lang in language %}
+										<ul>
+										<li>{{ lang['language'] }}</li>
+									</ul>
+									{% endfor %}
+									{% else %}
+
+									<ul>
+									<li>{{ language[0]['language'] }}</li>
+										</ul>
+									{% endif %}
+								</div>
+						</div>
+
+					</div><!--// .yui-gf -->
+
+					<div class="yui-gf">
+						<div class="yui-u first">
+							<h2>Awards</h2>
+						</div>
+						<div class="yui-u">
+							{% if award|length > 1 %}
+							{% for aw in award %}
+							<ul>
+											<li>{{ aw['awards'] }}</li>
+						{% endfor %}
+							</ul>
+						{% else %}
+						<ul>
+						<li>{{ award[0]['awards'] }} </li>
+						</ul>
+						{% endif %}
+								</ul>
+						</div>
+					</div><!--// .yui-gf-->
+
+					<div class="yui-gf">
+
+						<div class="yui-u first">
+							<h2>Experience</h2>
+						</div><!--// .yui-u -->
+
+						<div class="yui-u">
+
+							<div class="job">
+								{% if experience|length > 1 %}
+							  		{% for exp in experience %}
+										<h3>{{ exp["title"] }}</h3>
+				            			<h4>{{ exp["start"] }} - {{ exp["end"] }}</h4>
+				            			<p>{{ exp["place"] }} <br>/></p>
+
+
+											{% if description|length > 1 %}
+							  					<ul>
+													{% for d in des['description'] %}
+														<li>{{ d }}</li>
+													{% endfor %}
+												</ul>
+											{% else %}
+												<ul>
+					              					<li>{{ des["description"][0] }}</li>
+					            				</ul>
+											{% endif %}
+							  		{% endfor %}
+							  {% else %}
+								<h3>{{ experience[0]["title"] }}</h3>
+							  		<h4>{{ experience[0]["start"] }} - {{ experience[0]["end"] }}</h4>
+							  		<p>{{ experience[0]["place"] }} <br /></p>
+							  {% endif %}
+							</div>
+
+
+
+						</div><!--// .yui-u -->
+					</div><!--// .yui-gf -->
+
+
+					<div class="yui-gf last">
+						<div class="yui-u first">
+							<h2>Education</h2>
+						</div>
+						<div class="yui-u">
+							{% if education|length > 1 %}
+								{% for edu in education %}
+							<h3>{{ edu['school'] }} </h3>
+			            <h3>{{ edu["start"] }} - {{ edu["end"] }}</h3>
+			            <em>{{ edu["degree"] }}</em></p>
+								{% endfor %}
+							{% else %}
+							<h3>{{ education[0]['school'] }}</h3>
+								<h3>{{ education[0]["start"] }} - {{ education[0]["end"] }}</h3>
+								<em>{{ education[0]['degree'] }}</em>
+							{% endif %}
+						</div>
+					</div><!--// .yui-gf -->
+
+<div class="yui-gf">
+	<div class="yui-u first">
+		<h2>Extra Curricular</h2>
+		</div>
+		<div class="yui-u">
+			<div class="job">
+	{% if extra|length > 1 %}
+			{% for ext in extra %}
+			<h3>{{ ext["title"] }}</h3>
+						<h4>{{ ext["start"] }} - {{ ext["end"] }}</h4>
+						<p>{{ ext["place"] }} <br> </p>
+
+
+				{% if description|length > 1 %}
+						<ul class="info">
+						{% for m in dest['description'] %}
+							<li>{{ m }}</li>
+						{% endfor %}
+					</ul>
+				{% else %}
+					<ul class="info">
+										<li>{{ dest["description"][0] }}</li>
+								</ul>
+				{% endif %}
+			{% endfor %}
+	{% else %}
+				<h3>{{ extra[0]["title"] }}</h3>
+			<h4>{{ extra[0]["start"] }} - {{ extra[0]["end"] }}</h4>
+			<p>{{ extra[0]["place"] }} </p>
+	{% endif %}
+	</div>
+		</div>
+
+				</div><!--// .yui-b -->
+			</div><!--// yui-main -->
+		</div><!--// bd -->
+
+		<div id="ft">
+		</div><!--// footer -->
+
+	</div><!-- // inner -->
+
+
+</div><!--// doc -->
+	</div>
+
+
+</body>
+</html>

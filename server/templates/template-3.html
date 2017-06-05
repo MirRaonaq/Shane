@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> {{ name }} - {{ title }} </title>
+
+<meta name="viewport" content="width=device-width"/>
+<meta name="description" content="Resume"/>
+<meta charset="UTF-8">
+
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+<link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700|Lato:400,300' rel='stylesheet' type='text/css'>
+
+<!--[if lt IE 9]>
+<![endif]-->
+</head>
+<body id="top">
+<div id="cv" class="instaFade">
+	<div class="mainDetails">
+
+		<div id="name">
+			<h1 class="quickFade delayTwo">{{ name }}</h1>
+			<h2 class="quickFade delayThree">{{ title }}</h2>
+		</div>
+
+		<div id="contactDetails" class="quickFade delayFour">
+			<ul>
+				<li>{{ web }}</li>
+				<li>{{ number }}</li>
+			</ul>
+		</div>
+		<div class="clear"></div>
+	</div>
+
+	<div id="mainArea" class="quickFade delayFive">
+		<section>
+			<article>
+				<div class="sectionTitle">
+					<h1>Personal Profile</h1>
+				</div>
+
+				<div class="sectionContent">
+					<p>{{ objective }}</p>
+				</div>
+			</article>
+			<div class="clear"></div>
+		</section>
+
+
+		<section>
+			<div class="sectionTitle">
+				<h1>Work Experience</h1>
+			</div>
+
+			<div class="sectionContent">
+				<article>
+					{% if experience|length > 1 %}
+				  		{% for exp in experience %}
+					<h2>{{ exp["title"] }}</h2>
+					<p class="subDetails">{{ exp["start"] }} - {{ exp["end"] }}</p>
+					<p>{{ exp["place"] }}</p>
+					</article>
+					{% endfor %}
+				  {% else %}
+				<article>
+					<h2> {{ experience[0]["title"] }}</h2>
+					<p class="subDetails"> {{ experience[0]["start"] }} - {{ experience[0]["end"] }} </p>
+					<p>{{ experience[0]["place"]  }}</p>
+				</article>
+				{% endif %}
+			</div>
+			<div class="clear"></div>
+		</section>
+		<section>
+			<div class="sectionTitle">
+				<h1>Extra Curricular</h1>
+			</div>
+
+			<div class="sectionContent">
+				<article>
+					{% if experience|length > 1 %}
+				  		{% for exp in experience %}
+					<h2>{{ ext["title"] }}</h2>
+					<p class="subDetails">{{ ext["start"] }} - {{ ext["end"] }}</p>
+					<p>{{ ext["place"] }}</p>
+					</article>
+					{% endfor %}
+				  {% else %}
+				<article>
+					<h2> {{ extra[0]["title"] }}</h2>
+					<p class="subDetails"> {{ extra[0]["start"] }} - {{ extra[0]["end"] }} </p>
+					<p>{{ extra[0]["place"]  }}</p>
+				</article>
+				{% endif %}
+			</div>
+			<div class="clear"></div>
+		</section>
+
+
+		<section>
+			<div class="sectionTitle">
+				<h1>Awards</h1>
+			</div>
+
+			<div class="sectionContent">
+				<ul class="keySkills">
+					{% if award|length > 1 %}
+					{% for aw in award %}
+					<li>{{ awards }}</li>
+				</ul>
+				{% endfor %}
+				{% else %}
+				<ul class="keySkills">
+					<li>{{ award[0]['awards']  }}</li>
+				</ul>
+				{% endif %}
+			</div>
+			<div class="clear"></div>
+		</section>
+
+
+		<section>
+			<div class="sectionTitle">
+				<h1>Education</h1>
+			</div>
+
+			<div class="sectionContent">
+				{% if education|length > 1 %}
+				{% for edu in education %}
+				<article>
+					<h2>{{ edu['school'] }} </h2>
+					<p class="subDetails">{{ edu["start"] }} - {{ edu["end"] }}</p>
+					<p>{{ edu["degree"] }}</p>
+				</article>
+							{% endfor %}
+							{% else %}
+				<article>
+					<h2>{{ education[0]['school'] }}</h2>
+					<p class="subDetails">{{ education[0]["start"] }} - {{ education[0]["end"] }}</p>
+					<p> {{ education[0]['degree'] }}</p>
+				</article>
+				{% endif %}
+			</div>
+			<div class="clear"></div>
+		</section>
+
+	</div>
+</div>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-3753241-1");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+</body>
+</html>
